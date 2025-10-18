@@ -61,6 +61,24 @@ export default function Footer({ onScroll }: FooterProps) {
               >
                 © 2025 GAPLENS STUDIO / ALL RIGHTS RESERVED
               </p>
+              <p 
+                className="font-sans text-xs text-whisper-grey mt-1"
+                style={{ 
+                  fontFamily: 'SuisseBPIntl, sans-serif',
+                  fontSize: '10px',
+                  lineHeight: '1.4'
+                }}
+              >
+                DESIGNED & DEVELOPED BY{' '}
+                <Link
+                  href="https://ctrl-build.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-signature-ink transition-colors duration-200"
+                >
+                  CTRL+BUILD
+                </Link>
+              </p>
             </div>
 
             {/* Right Edge: Essential Social/Professional Links */}
