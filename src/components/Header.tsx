@@ -149,8 +149,9 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
                     : 'rotate-0'
                 }`}
                 style={{
-                  top: isMobileMenuOpen ? '50%' : '20%',
-                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(45deg)' : 'translateY(0) rotate(0deg)',
+                  top: isMobileMenuOpen ? '50%' : '25%',
+                  left: '50%',
+                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(45deg)' : 'translate(-50%, 0) rotate(0deg)',
                   backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
                 }}
               />
@@ -162,7 +163,8 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
                 }`}
                 style={{
                   top: '50%',
-                  transform: 'translateY(-50%)',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
                   backgroundColor: isScrolled ? '#2A2A2A' : '#C7C7C7'
                 }}
               />
@@ -173,8 +175,9 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
                     : 'rotate-0'
                 }`}
                 style={{
-                  top: isMobileMenuOpen ? '50%' : '80%',
-                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(-45deg)' : 'translateY(0) rotate(0deg)',
+                  top: isMobileMenuOpen ? '50%' : '75%',
+                  left: '50%',
+                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(-45deg)' : 'translate(-50%, 0) rotate(0deg)',
                   backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
                 }}
               />
