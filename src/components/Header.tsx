@@ -141,7 +141,7 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
             onMouseLeave={() => setIsHovering(false)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            <div className="relative w-5 h-5 flex flex-col justify-center items-center">
+            <div className="relative w-5 h-5">
               <span 
                 className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
                   isMobileMenuOpen 
@@ -149,9 +149,9 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
                     : 'rotate-0'
                 }`}
                 style={{
-                  top: isMobileMenuOpen ? '50%' : '25%',
+                  top: isMobileMenuOpen ? '50%' : '20%',
                   left: '50%',
-                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(45deg)' : 'translate(-50%, 0) rotate(0deg)',
+                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(45deg)' : 'translate(-50%, 0)',
                   backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
                 }}
               />
@@ -175,9 +175,9 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
                     : 'rotate-0'
                 }`}
                 style={{
-                  top: isMobileMenuOpen ? '50%' : '75%',
+                  top: isMobileMenuOpen ? '50%' : '80%',
                   left: '50%',
-                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(-45deg)' : 'translate(-50%, 0) rotate(0deg)',
+                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(-45deg)' : 'translate(-50%, 0)',
                   backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
                 }}
               />
