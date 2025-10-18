@@ -39,7 +39,7 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'In the silence between light and shadow, we find the true essence of architectural poetry.',
       leadImage: '/assets/images/projects/project-1/1-1.png',
       images: [
-        { id: '1-1', src: '/assets/images/projects/project-1/1-1.png', type: 'full-bleed' },
+        { id: '1-1', src: '/assets/images/projects/project-1/1-2.png', type: 'full-bleed' },
         { id: '1-2', src: '/assets/images/projects/project-1/1-2.png', type: 'asymmetric' },
         { id: '1-3', src: '/assets/images/projects/project-1/1-3.png', type: 'detail' },
         { id: '1-4', src: '/assets/images/projects/project-1/1-4.png', type: 'full-bleed' },
