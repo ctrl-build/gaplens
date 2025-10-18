@@ -58,8 +58,8 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'Memory is not in the object, but in the space between what was and what remains.',
       leadImage: '/assets/images/projects/project-2/2-1.png',
       images: [
-        { id: '2-1', src: '/assets/images/projects/project-2/2-2.png', type: 'full-bleed' },
-        { id: '2-2', src: '/assets/images/projects/project-2/2-3.png', type: 'asymmetric' },
+        { id: '2-1', src: '/assets/images/projects/project-2/2-3.png', type: 'full-bleed' },
+        { id: '2-2', src: '/assets/images/projects/project-2/2-2.png', type: 'asymmetric' },
         { id: '2-3', src: '/assets/images/projects/project-2/2-4.png', type: 'detail' },
         { id: '2-4', src: '/assets/images/projects/project-2/2-5.png', type: 'full-bleed' }
       ],
@@ -76,7 +76,7 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'True architecture speaks in whispers, not shouts.',
       leadImage: '/assets/images/projects/project-3/3-1.png',
       images: [
-        { id: '3-1', src: '/assets/images/projects/project-3/3-1.png', type: 'full-bleed' },
+        { id: '3-1', src: '/assets/images/projects/project-3/3-2.png', type: 'full-bleed' },
         { id: '3-2', src: '/assets/images/projects/project-3/3-2.png', type: 'asymmetric' },
         { id: '3-3', src: '/assets/images/projects/project-3/3-3.png', type: 'detail' },
         { id: '3-4', src: '/assets/images/projects/project-3/3-4.png', type: 'full-bleed' },
