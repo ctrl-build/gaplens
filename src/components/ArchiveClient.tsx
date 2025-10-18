@@ -21,6 +21,7 @@ export default function ArchiveClient() {
   const [isLoading, setIsLoading] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const archiveRef = useRef<HTMLDivElement>(null);
 
   const sampleProjects: Project[] = [
@@ -97,51 +98,72 @@ export default function ArchiveClient() {
   };
 
   useEffect(() => {
+    // Detect touch device
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    
+    checkTouchDevice();
+
     const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
+      if (!isTouchDevice) {
+        setCursorPosition({ x: e.clientX, y: e.clientY });
+      }
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    const handleMouseEnter = () => {
+      if (!isTouchDevice) {
+        setIsHovering(true);
+      }
+    };
+    const handleMouseLeave = () => {
+      if (!isTouchDevice) {
+        setIsHovering(false);
+      }
+    };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    if (!isTouchDevice) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseenter', handleMouseEnter);
+      document.addEventListener('mouseleave', handleMouseLeave);
+    }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isTouchDevice]);
 
   return (
     <>
-      <div
-        className={`fixed pointer-events-none z-50 transition-all duration-300 ${
-          isHovering ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{
-          left: cursorPosition.x,
-          top: cursorPosition.y,
-          transform: 'translate(-50%, -50%)',
-          width: isHovering ? '80px' : '20px',
-          height: isHovering ? '80px' : '20px',
-          border: '2px solid #8B7355',
-          borderRadius: '50%',
-          backgroundColor: 'rgba(139, 115, 85, 0.1)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '10px',
-          fontWeight: '500',
-          color: '#8B7355',
-          fontFamily: 'SuisseBPIntl, sans-serif',
-          letterSpacing: '0.1em'
-        }}
-      >
-        {isHovering ? 'VIEW' : ''}
-      </div>
+      {!isTouchDevice && (
+        <div
+          className={`fixed pointer-events-none z-50 transition-all duration-300 ${
+            isHovering ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            left: cursorPosition.x,
+            top: cursorPosition.y,
+            transform: 'translate(-50%, -50%)',
+            width: isHovering ? '80px' : '20px',
+            height: isHovering ? '80px' : '20px',
+            border: '2px solid #8B7355',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(139, 115, 85, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '10px',
+            fontWeight: '500',
+            color: '#8B7355',
+            fontFamily: 'SuisseBPIntl, sans-serif',
+            letterSpacing: '0.1em'
+          }}
+        >
+          {isHovering ? 'VIEW' : ''}
+        </div>
+      )}
 
       <div 
         ref={archiveRef}

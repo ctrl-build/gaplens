@@ -12,6 +12,7 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   // Scroll reveal animation
@@ -36,52 +37,73 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
 
   // Custom cursor tracking
   useEffect(() => {
+    // Detect touch device
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    
+    checkTouchDevice();
+
     const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
+      if (!isTouchDevice) {
+        setCursorPosition({ x: e.clientX, y: e.clientY });
+      }
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    const handleMouseEnter = () => {
+      if (!isTouchDevice) {
+        setIsHovering(true);
+      }
+    };
+    const handleMouseLeave = () => {
+      if (!isTouchDevice) {
+        setIsHovering(false);
+      }
+    };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    if (!isTouchDevice) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseenter', handleMouseEnter);
+      document.addEventListener('mouseleave', handleMouseLeave);
+    }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isTouchDevice]);
 
   return (
     <>
       {/* Custom Cursor for CTA Hover */}
-      <div
-        className={`fixed pointer-events-none z-50 transition-all duration-300 ${
-          isHovered ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{
-          left: cursorPosition.x,
-          top: cursorPosition.y,
-          transform: 'translate(-50%, -50%)',
-          width: isHovered ? '80px' : '20px',
-          height: isHovered ? '80px' : '20px',
-          border: '2px solid #B8B0A8', // Archive Sepia
-          borderRadius: '50%',
-          backgroundColor: 'rgba(184, 176, 168, 0.1)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '10px',
-          fontWeight: '500',
-          color: '#B8B0A8',
-          fontFamily: 'SuisseBPIntl, sans-serif',
-          letterSpacing: '0.1em'
-        }}
-      >
-        {isHovered ? 'EMAIL' : ''}
-      </div>
+      {!isTouchDevice && (
+        <div
+          className={`fixed pointer-events-none z-50 transition-all duration-300 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            left: cursorPosition.x,
+            top: cursorPosition.y,
+            transform: 'translate(-50%, -50%)',
+            width: isHovered ? '80px' : '20px',
+            height: isHovered ? '80px' : '20px',
+            border: '2px solid #B8B0A8', // Archive Sepia
+            borderRadius: '50%',
+            backgroundColor: 'rgba(184, 176, 168, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '10px',
+            fontWeight: '500',
+            color: '#B8B0A8',
+            fontFamily: 'SuisseBPIntl, sans-serif',
+            letterSpacing: '0.1em'
+          }}
+        >
+          {isHovered ? 'EMAIL' : ''}
+        </div>
+      )}
 
       {/* The Final Whisper - Contact/Inquiry CTA */}
       <section 

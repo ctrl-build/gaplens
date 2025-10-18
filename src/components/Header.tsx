@@ -14,6 +14,7 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const navigationLinks = [
     { name: 'Archive', href: '/archive' },
@@ -49,34 +50,55 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
   }, [externalScrolled]);
 
   useEffect(() => {
+    // Detect touch device
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    
+    checkTouchDevice();
+
     const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
+      if (!isTouchDevice) {
+        setCursorPosition({ x: e.clientX, y: e.clientY });
+      }
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    const handleMouseEnter = () => {
+      if (!isTouchDevice) {
+        setIsHovering(true);
+      }
+    };
+    const handleMouseLeave = () => {
+      if (!isTouchDevice) {
+        setIsHovering(false);
+      }
+    };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    if (!isTouchDevice) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseenter', handleMouseEnter);
+      document.addEventListener('mouseleave', handleMouseLeave);
+    }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isTouchDevice]);
 
   return (
     <>
-      <div
-        className="custom-cursor"
-        style={{
-          left: cursorPosition.x,
-          top: cursorPosition.y,
-          transform: isHovering ? 'translate(-50%, -50%) scale(2)' : 'translate(-50%, -50%) scale(1)'
-        }}
-      />
+      {!isTouchDevice && (
+        <div
+          className="custom-cursor"
+          style={{
+            left: cursorPosition.x,
+            top: cursorPosition.y,
+            transform: isHovering ? 'translate(-50%, -50%) scale(2)' : 'translate(-50%, -50%) scale(1)'
+          }}
+        />
+      )}
 
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
