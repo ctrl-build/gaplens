@@ -1,0 +1,96 @@
+name = "gaplens-website"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "gaplens-website"
+
+[env.preview]
+name = "gaplens-website-preview"
+
+# Build configuration for Cloudflare Pages
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "src"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+NEXT_PUBLIC_APP_URL = "https://gaplens.com"
+
+# Headers for security and performance
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+X-XSS-Protection = "1; mode=block"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+for = "/assets/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache images
+[[headers]]
+for = "*.png"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.jpeg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.webp"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache fonts
+[[headers]]
+for = "*.woff2"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.woff"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.otf"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache videos
+[[headers]]
+for = "*.mp4"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers for API routes
+[[headers]]
+for = "/api/*"
+[headers.values]
+X-Robots-Tag = "noindex, nofollow"
+
+# Redirects
+[[redirects]]
+from = "/www/*"
+to = "/:splat"
+status = 301
+
+[[redirects]]
+from = "https://www.gaplens.com/*"
+to = "https://gaplens.com/:splat"
+status = 301

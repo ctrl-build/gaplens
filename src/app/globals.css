@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'GaramondPremierPro';
+  src: url('/fonts/GaramondPremrPro.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GaramondPremierPro';
+  src: url('/fonts/GaramondPremrPro-Bd.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SuisseBPIntl';
+  src: url('/fonts/SuisseBPIntl-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SuisseBPIntl';
+  src: url('/fonts/SuisseBPIntl-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SuisseBPIntl';
+  src: url('/fonts/SuisseBPIntl-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1C1C1C;
+  --whisper-grey: #C7C7C7;
+  --light-grey: #2A2A2A;
+  --archive-sepia: #8B7355;
+  --gallery-white: #F9F9F9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-whisper-grey: var(--whisper-grey);
+  --color-light-grey: var(--light-grey);
+  --color-archive-sepia: var(--archive-sepia);
+  --color-gallery-white: var(--gallery-white);
+  --font-serif: 'GaramondPremierPro', serif;
+  --font-sans: 'SuisseBPIntl', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--whisper-grey);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.1s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  border-color: var(--foreground);
+  border-width: 2px;
+}
+
+.custom-cursor.immersive {
+  border-color: var(--archive-sepia);
+  background-color: var(--archive-sepia);
+  opacity: 0.1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+  
+  * {
+    cursor: auto;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-signature-ink {
+  color: var(--foreground);
+}
+
+.text-whisper-grey {
+  color: var(--whisper-grey);
+}
+
+.text-light-grey {
+  color: var(--light-grey);
+}
+
+* {
+  transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }

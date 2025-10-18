@@ -1,0 +1,93 @@
+# Cloudflare Pages Headers Configuration
+# This file configures headers for optimal performance and security
+
+# Security headers for all pages
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Cache static assets for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 year
+*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache fonts for 1 year
+*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+*.otf
+  Cache-Control: public, max-age=31536000, immutable
+
+*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache videos for 1 year
+*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+*.webm
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS and JS for 1 year
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache HTML pages for 1 hour
+/*.html
+  Cache-Control: public, max-age=3600
+
+# Cache index pages for 1 hour
+/
+  Cache-Control: public, max-age=3600
+
+/archive/
+  Cache-Control: public, max-age=3600
+
+/studio/
+  Cache-Control: public, max-age=3600
+
+/contact/
+  Cache-Control: public, max-age=3600
+
+/editorial/
+  Cache-Control: public, max-age=3600
+
+/terms/
+  Cache-Control: public, max-age=3600
+
+# Cache project pages for 1 hour
+/project/*
+  Cache-Control: public, max-age=3600
+
+# Cache editorial articles for 1 hour
+/editorial/*
+  Cache-Control: public, max-age=3600
+
+# Security headers for API routes (if any)
+/api/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, no-store, must-revalidate
