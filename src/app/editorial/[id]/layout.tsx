@@ -1,6 +1,7 @@
 export async function generateStaticParams() {
   return [
-    { id: '1' }
+    { id: '1' },
+    { id: 'architecture-of-silence' }
   ];
 }
 
