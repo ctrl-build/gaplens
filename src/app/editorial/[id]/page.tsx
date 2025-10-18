@@ -56,6 +56,38 @@ const getArticleData = (id: string): Article => {
         ],
         conclusion: 'Architecture, at its finest, is not about the building itself, but about the spaces it creates. In the silence between light and shadow, we find the true essence of architectural poetry.'
       }
+    },
+    'architecture-of-silence': {
+      id: '1',
+      title: 'The Architecture of Silence',
+      date: 'December 2024',
+      category: 'Architectural Study',
+      author: 'GapLens Studio',
+      readTime: '8 min read',
+      content: {
+        introduction: 'In the spaces between light and shadow, we find the true essence of architectural poetry. This exploration of brutalist architecture reveals the hidden narratives embedded within concrete forms.',
+        sections: [
+          {
+            heading: 'The Weight of Concrete',
+            content: 'Brutalist architecture speaks through its materiality. The raw, unadorned concrete becomes a canvas for light and shadow, creating moments of profound beauty in the most unexpected places.',
+            image: '/assets/images/projects/project-1/1-1.png',
+            caption: 'The interplay of light and shadow on concrete surfaces'
+          },
+          {
+            heading: 'Geometric Poetry',
+            content: 'The geometric forms of brutalist structures create a visual rhythm that echoes through the urban landscape. Each angle, each line, tells a story of function meeting form in perfect harmony.',
+            image: '/assets/images/projects/project-1/1-2.png',
+            caption: 'Geometric patterns emerging from architectural forms'
+          },
+          {
+            heading: 'The Silence Between',
+            content: 'In the quiet moments between the noise of the city, these structures stand as monuments to the power of restraint. They remind us that beauty often lies not in what we add, but in what we choose to leave out.',
+            image: '/assets/images/projects/project-1/1-3.png',
+            caption: 'The contemplative spaces within architectural forms'
+          }
+        ],
+        conclusion: 'Architecture, at its finest, is not about the building itself, but about the spaces it creates. In the silence between light and shadow, we find the true essence of architectural poetry.'
+      }
     }
   };
 
