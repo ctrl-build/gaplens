@@ -58,10 +58,10 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'Memory is not in the object, but in the space between what was and what remains.',
       leadImage: '/assets/images/projects/project-2/2-1.png',
       images: [
-        { id: '2-1', src: '/assets/images/projects/project-2/2-1.png', type: 'full-bleed' },
-        { id: '2-2', src: '/assets/images/projects/project-2/2-2.png', type: 'asymmetric' },
-        { id: '2-3', src: '/assets/images/projects/project-2/2-3.png', type: 'detail' },
-        { id: '2-4', src: '/assets/images/projects/project-2/2-4.png', type: 'full-bleed' }
+        { id: '2-1', src: '/assets/images/projects/project-2/2-2.png', type: 'full-bleed' },
+        { id: '2-2', src: '/assets/images/projects/project-2/2-3.png', type: 'asymmetric' },
+        { id: '2-3', src: '/assets/images/projects/project-2/2-4.png', type: 'detail' },
+        { id: '2-4', src: '/assets/images/projects/project-2/2-5.png', type: 'full-bleed' }
       ],
       nextProject: { id: '3', title: 'Silence and Structure' }
     },
@@ -95,9 +95,9 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'In the ephemeral, we find the eternal.',
       leadImage: '/assets/images/projects/project-4/4-1.png',
       images: [
-        { id: '4-1', src: '/assets/images/projects/project-4/4-1.png', type: 'full-bleed' },
-        { id: '4-2', src: '/assets/images/projects/project-4/4-2.png', type: 'asymmetric' },
-        { id: '4-3', src: '/assets/images/projects/project-4/4-3.png', type: 'detail' }
+        { id: '4-1', src: '/assets/images/projects/project-4/4-2.png', type: 'full-bleed' },
+        { id: '4-2', src: '/assets/images/projects/project-4/4-3.png', type: 'asymmetric' },
+        { id: '4-3', src: '/assets/images/projects/project-4/4-4.png', type: 'detail' }
       ],
       nextProject: { id: '5', title: 'Urban Echoes' }
     },
@@ -112,10 +112,10 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'The city speaks in echoes, if we know how to listen.',
       leadImage: '/assets/images/projects/project-5/5-1.png',
       images: [
-        { id: '5-1', src: '/assets/images/projects/project-5/5-1.png', type: 'full-bleed' },
-        { id: '5-2', src: '/assets/images/projects/project-5/5-2.png', type: 'asymmetric' },
-        { id: '5-3', src: '/assets/images/projects/project-5/5-3.png', type: 'detail' },
-        { id: '5-4', src: '/assets/images/projects/project-5/5-4.png', type: 'full-bleed' }
+        { id: '5-1', src: '/assets/images/projects/project-5/5-2.png', type: 'full-bleed' },
+        { id: '5-2', src: '/assets/images/projects/project-5/5-3.png', type: 'asymmetric' },
+        { id: '5-3', src: '/assets/images/projects/project-5/5-4.png', type: 'detail' },
+        { id: '5-4', src: '/assets/images/projects/project-5/5-5.png', type: 'full-bleed' }
       ],
       nextProject: { id: '6', title: 'Abstracted Reality' }
     },
@@ -130,9 +130,9 @@ const getProjectData = (id: string): ProjectData => {
       conclusion: 'Reality is not what we see, but what we choose to see.',
       leadImage: '/assets/images/projects/project-6/6-1.png',
       images: [
-        { id: '6-1', src: '/assets/images/projects/project-6/6-1.png', type: 'full-bleed' },
-        { id: '6-2', src: '/assets/images/projects/project-6/6-2.png', type: 'asymmetric' },
-        { id: '6-3', src: '/assets/images/projects/project-6/6-3.png', type: 'detail' }
+        { id: '6-1', src: '/assets/images/projects/project-6/6-2.png', type: 'full-bleed' },
+        { id: '6-2', src: '/assets/images/projects/project-6/6-3.png', type: 'asymmetric' },
+        { id: '6-3', src: '/assets/images/projects/project-6/6-4.png', type: 'detail' }
       ]
     }
   };
