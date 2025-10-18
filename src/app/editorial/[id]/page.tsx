@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, use } from 'react';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 
@@ -94,8 +94,9 @@ const getArticleData = (id: string): Article => {
   return articles[id] || articles['1'];
 };
 
-export default function ArticleDetail({ params }: { params: { id: string } }) {
-  const article = getArticleData(params.id);
+export default function ArticleDetail({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
+  const article = getArticleData(resolvedParams.id);
   const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set(['article-title', 'article-meta', 'article-intro']));
   const [isScrolled, setIsScrolled] = useState(false);
   const articleRef = useRef<HTMLDivElement>(null);
