@@ -5,9 +5,6 @@
 https://www.gaplens.com/* https://gaplens.com/:splat 301
 http://www.gaplens.com/* https://gaplens.com/:splat 301
 
-# Redirect trailing slashes (optional)
-/*/ /:splat 301
-
 # Redirect old URLs to new structure (if needed)
 # /old-page /new-page 301
 
