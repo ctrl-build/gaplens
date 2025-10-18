@@ -11,7 +11,11 @@ export default function Hero({ onScroll }: HeroProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,6 +25,18 @@ export default function Hero({ onScroll }: HeroProps) {
     return () => clearTimeout(timer);
   }, []);
 
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                            ('ontouchstart' in window) || 
+                            (navigator.maxTouchPoints > 0);
+      setIsMobile(isMobileDevice);
+    };
+    
+    checkMobile();
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setVideoLoaded(true);
@@ -28,6 +44,53 @@ export default function Hero({ onScroll }: HeroProps) {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Handle video autoplay on mobile
+  useEffect(() => {
+    if (videoRef.current && isMobile) {
+      const video = videoRef.current;
+      
+      const handlePlay = () => {
+        setVideoPlaying(true);
+        setShowPlayButton(false);
+      };
+      
+      const handlePause = () => {
+        setVideoPlaying(false);
+        setShowPlayButton(true);
+      };
+      
+      const handleError = () => {
+        console.log('Video autoplay failed, showing play button');
+        setShowPlayButton(true);
+      };
+      
+      // Try to play the video
+      const playVideo = async () => {
+        try {
+          await video.play();
+          setVideoPlaying(true);
+        } catch (error) {
+          console.log('Autoplay prevented:', error);
+          setShowPlayButton(true);
+        }
+      };
+      
+      video.addEventListener('play', handlePlay);
+      video.addEventListener('pause', handlePause);
+      video.addEventListener('error', handleError);
+      
+      // Attempt to play after a short delay
+      const playTimer = setTimeout(playVideo, 1000);
+      
+      return () => {
+        video.removeEventListener('play', handlePlay);
+        video.removeEventListener('pause', handlePause);
+        video.removeEventListener('error', handleError);
+        clearTimeout(playTimer);
+      };
+    }
+  }, [isMobile, videoLoaded]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +113,19 @@ export default function Hero({ onScroll }: HeroProps) {
     }
   }, []);
 
+  // Manual play function for mobile
+  const handlePlayVideo = async () => {
+    if (videoRef.current) {
+      try {
+        await videoRef.current.play();
+        setVideoPlaying(true);
+        setShowPlayButton(false);
+      } catch (error) {
+        console.error('Failed to play video:', error);
+      }
+    }
+  };
+
   return (
     <section 
       ref={heroRef}
@@ -64,6 +140,7 @@ export default function Hero({ onScroll }: HeroProps) {
         }}
       >
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted
@@ -99,6 +176,23 @@ export default function Hero({ onScroll }: HeroProps) {
         {!videoLoaded && (
           <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 flex items-center justify-center z-10 transition-opacity duration-1000">
             <div className="text-whisper-grey text-sm animate-pulse">Loading cinematic experience...</div>
+          </div>
+        )}
+
+        {/* Mobile Play Button Overlay */}
+        {isMobile && showPlayButton && (
+          <div className="absolute inset-0 flex items-center justify-center z-20 bg-black bg-opacity-30">
+            <button
+              onClick={handlePlayVideo}
+              className="group relative flex items-center justify-center w-20 h-20 bg-white bg-opacity-90 rounded-full hover:bg-opacity-100 transition-all duration-300 hover:scale-110"
+              aria-label="Play video"
+            >
+              <div className="w-0 h-0 border-l-[16px] border-l-signature-ink border-y-[12px] border-y-transparent ml-1"></div>
+              <div className="absolute inset-0 rounded-full border-2 border-signature-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-sm font-medium">
+              Tap to play
+            </div>
           </div>
         )}
         
