@@ -135,53 +135,26 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
           </nav>
 
           <button
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 p-1 group"
+            className="md:hidden flex flex-col justify-center items-center w-6 h-6"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            <div className="relative w-5 h-5">
-              <span 
-                className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
-                  isMobileMenuOpen 
-                    ? 'rotate-45' 
-                    : 'rotate-0'
-                }`}
-                style={{
-                  top: isMobileMenuOpen ? '50%' : '20%',
-                  left: '50%',
-                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(45deg)' : 'translate(-50%, 0)',
-                  backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
-                }}
-              />
-              <span 
-                className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
-                  isMobileMenuOpen 
-                    ? 'opacity-0 scale-0' 
-                    : 'opacity-100 scale-100'
-                }`}
-                style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  backgroundColor: isScrolled ? '#2A2A2A' : '#C7C7C7'
-                }}
-              />
-              <span 
-                className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
-                  isMobileMenuOpen 
-                    ? '-rotate-45' 
-                    : 'rotate-0'
-                }`}
-                style={{
-                  top: isMobileMenuOpen ? '50%' : '80%',
-                  left: '50%',
-                  transform: isMobileMenuOpen ? 'translate(-50%, -50%) rotate(-45deg)' : 'translate(-50%, 0)',
-                  backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
-                }}
-              />
-            </div>
+            <span 
+              className={`block w-4 h-px bg-whisper-grey transition-all duration-300 ${
+                isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''
+              }`}
+            />
+            <span 
+              className={`block w-4 h-px bg-whisper-grey transition-all duration-300 mt-1 ${
+                isMobileMenuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span 
+              className={`block w-4 h-px bg-whisper-grey transition-all duration-300 mt-1 ${
+                isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''
+              }`}
+            />
           </button>
         </div>
 
