@@ -145,34 +145,37 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
               <span 
                 className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
                   isMobileMenuOpen 
-                    ? 'rotate-45 bg-signature-ink' 
-                    : 'rotate-0 bg-whisper-grey group-hover:bg-signature-ink'
+                    ? 'rotate-45' 
+                    : 'rotate-0'
                 }`}
                 style={{
                   top: isMobileMenuOpen ? '50%' : '20%',
-                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(45deg)' : 'translateY(0) rotate(0deg)'
+                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(45deg)' : 'translateY(0) rotate(0deg)',
+                  backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
                 }}
               />
               <span 
                 className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
                   isMobileMenuOpen 
                     ? 'opacity-0 scale-0' 
-                    : 'opacity-100 scale-100 bg-whisper-grey group-hover:bg-signature-ink'
+                    : 'opacity-100 scale-100'
                 }`}
                 style={{
                   top: '50%',
-                  transform: 'translateY(-50%)'
+                  transform: 'translateY(-50%)',
+                  backgroundColor: isScrolled ? '#2A2A2A' : '#C7C7C7'
                 }}
               />
               <span 
                 className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
                   isMobileMenuOpen 
-                    ? '-rotate-45 bg-signature-ink' 
-                    : 'rotate-0 bg-whisper-grey group-hover:bg-signature-ink'
+                    ? '-rotate-45' 
+                    : 'rotate-0'
                 }`}
                 style={{
                   top: isMobileMenuOpen ? '50%' : '80%',
-                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(-45deg)' : 'translateY(0) rotate(0deg)'
+                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(-45deg)' : 'translateY(0) rotate(0deg)',
+                  backgroundColor: isMobileMenuOpen ? '#1C1C1C' : (isScrolled ? '#2A2A2A' : '#C7C7C7')
                 }}
               />
             </div>
