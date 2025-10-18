@@ -135,26 +135,47 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
           </nav>
 
           <button
-            className="md:hidden flex flex-col justify-center items-center w-6 h-6"
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 p-1 group"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            <span 
-              className={`block w-4 h-px bg-whisper-grey transition-all duration-300 ${
-                isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''
-              }`}
-            />
-            <span 
-              className={`block w-4 h-px bg-whisper-grey transition-all duration-300 mt-1 ${
-                isMobileMenuOpen ? 'opacity-0' : ''
-              }`}
-            />
-            <span 
-              className={`block w-4 h-px bg-whisper-grey transition-all duration-300 mt-1 ${
-                isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''
-              }`}
-            />
+            <div className="relative w-5 h-5 flex flex-col justify-center items-center">
+              <span 
+                className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
+                  isMobileMenuOpen 
+                    ? 'rotate-45 bg-signature-ink' 
+                    : 'rotate-0 bg-whisper-grey group-hover:bg-signature-ink'
+                }`}
+                style={{
+                  top: isMobileMenuOpen ? '50%' : '20%',
+                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(45deg)' : 'translateY(0) rotate(0deg)'
+                }}
+              />
+              <span 
+                className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
+                  isMobileMenuOpen 
+                    ? 'opacity-0 scale-0' 
+                    : 'opacity-100 scale-100 bg-whisper-grey group-hover:bg-signature-ink'
+                }`}
+                style={{
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}
+              />
+              <span 
+                className={`absolute w-5 h-px transition-all duration-500 ease-in-out ${
+                  isMobileMenuOpen 
+                    ? '-rotate-45 bg-signature-ink' 
+                    : 'rotate-0 bg-whisper-grey group-hover:bg-signature-ink'
+                }`}
+                style={{
+                  top: isMobileMenuOpen ? '50%' : '80%',
+                  transform: isMobileMenuOpen ? 'translateY(-50%) rotate(-45deg)' : 'translateY(0) rotate(0deg)'
+                }}
+              />
+            </div>
           </button>
         </div>
 
