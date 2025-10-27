@@ -12,7 +12,6 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
   const [selectedQuote, setSelectedQuote] = useState(0);
   const ethosRef = useRef<HTMLDivElement>(null);
 
-  // Alternative copy options
   const quotes = [
     {
       text: "The greatest depth is found not in what we show, but in the silence we allow the eye to hold.",
@@ -28,7 +27,6 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
     }
   ];
 
-  // Scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -37,7 +35,6 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
         const rect = ethosRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Trigger when element is 70% visible
         if (rect.top < windowHeight * 0.7 && rect.bottom > 0) {
           setIsVisible(true);
         }
@@ -54,17 +51,14 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
     <section 
       ref={ethosRef}
       className="relative w-full bg-gallery-white py-24 lg:py-32"
-      style={{ backgroundColor: '#F9F9F9' }}
+        style={{ backgroundColor: '#F9F9F9' }}
     >
-      {/* Container with generous vertical padding */}
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <div className="flex justify-end">
-          {/* Asymmetrical positioning - anchored right, 1/3 width */}
-          <div 
+          <div
             className="w-full max-w-sm lg:max-w-md"
             style={{ maxWidth: '300px' }}
           >
-            {/* The Marginal Note - Studio Ethos Statement */}
             <blockquote 
               className={`transition-all duration-1200 ${
                 isVisible 
@@ -77,7 +71,6 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
                   : 'translateX(5px)',
               }}
             >
-              {/* Main Quote */}
               <p 
                 className="font-serif text-xl lg:text-2xl italic text-signature-ink leading-relaxed mb-4"
                 style={{ 
@@ -89,7 +82,6 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
                 "{quotes[selectedQuote].text}"
               </p>
               
-              {/* Citation */}
               <cite 
                 className="font-sans text-xs font-medium uppercase tracking-widest text-signature-ink opacity-70"
                 style={{ 
@@ -105,7 +97,6 @@ export default function StudioEthos({ onScroll }: StudioEthosProps) {
         </div>
       </div>
 
-      {/* Subtle depth overlay for contemplative feel */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{

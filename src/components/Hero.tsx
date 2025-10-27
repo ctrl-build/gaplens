@@ -71,19 +71,15 @@ export default function Hero({ onScroll }: HeroProps) {
           playsInline
           preload="metadata"
           onLoadedData={() => {
-            console.log('✅ Video loaded successfully');
             setVideoLoaded(true);
           }}
           onError={(e) => {
-            console.error('❌ Hero video failed to load:', e);
             setVideoLoaded(true);
           }}
           onCanPlay={() => {
-            console.log('▶️ Video can play');
             setVideoLoaded(true);
           }}
           onLoadStart={() => {
-            console.log('🔄 Video loading started');
           }}
           style={{
             filter: 'contrast(1.1) saturate(0.8) brightness(0.95)',

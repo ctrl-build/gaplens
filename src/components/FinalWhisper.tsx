@@ -15,14 +15,12 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  // Scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       if (ctaRef.current) {
         const rect = ctaRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Trigger when element is 70% visible
         if (rect.top < windowHeight * 0.7 && rect.bottom > 0) {
           setIsVisible(true);
         }
@@ -35,9 +33,7 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [onScroll]);
 
-  // Custom cursor tracking
   useEffect(() => {
-    // Detect touch device
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     };
@@ -76,7 +72,6 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
 
   return (
     <>
-      {/* Custom Cursor for CTA Hover */}
       {!isTouchDevice && (
         <div
           className={`fixed pointer-events-none z-50 transition-all duration-300 ${
@@ -105,16 +100,13 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
         </div>
       )}
 
-      {/* The Final Whisper - Contact/Inquiry CTA */}
       <section 
         ref={ctaRef}
         className="relative w-full bg-gallery-white py-24 lg:py-32"
         style={{ backgroundColor: '#F9F9F9' }}
       >
-        {/* Container with significant vertical white space */}
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <div className="flex justify-center">
-            {/* The Isolated Invitation */}
             <div 
               className={`transition-all duration-1500 ${
                 isVisible 
@@ -139,28 +131,26 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
                   setIsHovering(false);
                 }}
               >
-                {/* The CTA Text - Extreme Typography */}
                 <span 
                   className="font-sans text-lg sm:text-xl lg:text-2xl font-bold text-signature-ink transition-all duration-300 whitespace-nowrap"
                   style={{ 
                     fontFamily: 'SuisseBPIntl, sans-serif',
                     fontSize: '16px',
                     fontWeight: 700,
-                    letterSpacing: '0.1em', // Reduced letter spacing for mobile
-                    wordSpacing: '0.15em', // Reduced word spacing for mobile
+                    letterSpacing: '0.1em',
+                    wordSpacing: '0.15em',
                     lineHeight: '1.2'
                   }}
                 >
                   INITIATE A PRIVATE INQUIRY
                 </span>
                 
-                {/* Retracting Line Effect */}
                 <div 
                   className={`absolute bottom-0 left-0 h-px bg-archive-sepia transition-all duration-1000 ${
                     isHovered ? 'w-0' : 'w-full'
                   }`}
                   style={{
-                    backgroundColor: '#B8B0A8', // Archive Sepia
+                    backgroundColor: '#B8B0A8',
                     transform: isHovered ? 'scaleX(0)' : 'scaleX(1)',
                     transformOrigin: 'center'
                   }}
@@ -170,7 +160,6 @@ export default function FinalWhisper({ onScroll }: FinalWhisperProps) {
           </div>
         </div>
 
-        {/* Subtle Depth Overlay for Premium Feel */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{

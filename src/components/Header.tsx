@@ -50,7 +50,6 @@ export default function Header({ isScrolled: externalScrolled }: HeaderProps) {
   }, [externalScrolled]);
 
   useEffect(() => {
-    // Detect touch device
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     };

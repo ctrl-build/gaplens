@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-// Defines the visual constants
-const PARALLAX_SPEED = -0.15; // Image moves 15% slower (negative value for up-scroll)
+const PARALLAX_SPEED = -0.15;
 const SECTION_HEIGHT = '70vh';
-const DURATION = 1500; // Transition duration in milliseconds
+const DURATION = 1500;
 
 interface ThematicInterludeProps {
   onScroll?: () => void;
@@ -16,31 +15,21 @@ export default function ThematicInterlude({ onScroll }: ThematicInterludeProps) 
   const imageRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Function to handle both Parallax and Visibility Check
   const handleScroll = useCallback(() => {
     if (!interludeRef.current || !imageRef.current) return;
 
     const rect = interludeRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // 1. Visibility Check (Scroll Reveal Trigger)
-    // Element is considered visible when 10% enters the screen
     if (rect.top < windowHeight * 0.9 && rect.bottom > 0) {
       setIsVisible(true);
-    } else {
-      // Optional: Set isVisible to false if it exits far from view
-      // setIsVisible(false); 
     }
 
-    // 2. Parallax Calculation (The Weighted Scroll)
-    // Calculate the element's center offset from the viewport center
     const centerOffset = rect.top - windowHeight / 2 + rect.height / 2;
-    // Calculate the translation amount
     const translateY = centerOffset * PARALLAX_SPEED;
 
-    // Apply translation using requestAnimationFrame for performance
     requestAnimationFrame(() => {
-      imageRef.current!.style.transform = `translateY(${translateY}px) scale(1.02)`; // scale(1.02) to ensure image always covers the viewport during parallax
+      imageRef.current!.style.transform = `translateY(${translateY}px) scale(1.02)`;
     });
     
     if (onScroll) onScroll();
@@ -48,38 +37,32 @@ export default function ThematicInterlude({ onScroll }: ThematicInterludeProps) 
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check visibility on mount
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  // CSS variables for use in inline styles
   const transitionStyle = `transform ${DURATION}ms cubic-bezier(0.23, 1, 0.32, 1), opacity ${DURATION}ms cubic-bezier(0.23, 1, 0.32, 1)`;
 
   return (
     <section 
       ref={interludeRef}
-      className="relative w-full overflow-hidden bg-[#F9F9F9] pointer-events-none" // Gallery White background
+      className="relative w-full overflow-hidden bg-[#F9F9F9] pointer-events-none"
       style={{ height: SECTION_HEIGHT }}
     >
-      {/* The Immersive Detail Container 
-        - The image itself is slightly over-scaled (1.02) and uses parallax for depth.
-      */}
       <div 
         ref={imageRef}
-        className="absolute inset-[-10%] w-[120%] h-[120%] transition-opacity" // Oversized container for parallax to prevent edges showing
+        className="absolute inset-[-10%] w-[120%] h-[120%] transition-opacity"
         style={{
-          // Note: Initial transform is set by handleScroll on mount
-          backgroundImage: `url('/assets/images/interlude.png')`, // Cracked earth texture
+          backgroundImage: `url('/assets/images/interlude.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           transition: `opacity ${DURATION}ms ease-out`,
-          opacity: isVisible ? 1 : 0.5, // Subtle fade in/out during scroll
+          opacity: isVisible ? 1 : 0.5,
         }}
       >
         
-        {/* Aesthetic Layer 1: High Contrast & Tonal Range (Simulating deep texture) */}
         <div 
           className="absolute inset-0"
           style={{
@@ -88,17 +71,15 @@ export default function ThematicInterlude({ onScroll }: ThematicInterludeProps) 
           }}
         />
 
-        {/* Aesthetic Layer 2: Monochromatic Filter (Subtle Sepia/Warmth) */}
         <div 
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(45deg, rgba(184, 176, 168, 0.05) 0%, rgba(28, 28, 28, 0.05) 100%)', // Archive Sepia to Signature Ink
+            background: 'linear-gradient(45deg, rgba(184, 176, 168, 0.05) 0%, rgba(28, 28, 28, 0.05) 100%)',
             mixBlendMode: 'overlay',
             opacity: 0.8
           }}
         />
 
-        {/* Aesthetic Layer 3: Film Grain for Tactility */}
         <div 
           className="absolute inset-0 opacity-15"
           style={{
@@ -108,11 +89,8 @@ export default function ThematicInterlude({ onScroll }: ThematicInterludeProps) 
         />
       </div>
 
-      {/* Scroll Reveal Effect: The Intentional Horizontal Wipe 
-        - Uses scaleX to cover the image, then transition to scaleX(0) when visible.
-      */}
       <div 
-        className="absolute inset-0 bg-[#F9F9F9]" // Gallery White wipe
+        className="absolute inset-0 bg-[#F9F9F9]"
         style={{
           transformOrigin: 'center',
           transition: transitionStyle,

@@ -17,14 +17,12 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const featuredWorkRef = useRef<HTMLDivElement>(null);
 
-  // Scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       if (featuredWorkRef.current) {
         const rect = featuredWorkRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Trigger when element is 60% visible
         if (rect.top < windowHeight * 0.6 && rect.bottom > 0) {
           setIsVisible(true);
         }
@@ -37,9 +35,7 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [onScroll]);
 
-  // Custom cursor tracking
   useEffect(() => {
-    // Detect touch device
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     };
@@ -78,7 +74,6 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
 
   return (
     <>
-      {/* Custom Cursor for Image Hover */}
       {!isTouchDevice && (
         <div
           className={`fixed pointer-events-none z-50 transition-all duration-300 ${
@@ -107,16 +102,13 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
         </div>
       )}
 
-      {/* Featured Work Section */}
       <section 
         ref={featuredWorkRef}
         className="relative w-full bg-gallery-white py-32 lg:py-48"
         style={{ backgroundColor: '#F9F9F9' }}
       >
-        {/* Container with controlled white space */}
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="relative">
-            {/* The Image: The Emotional Hook */}
             <div 
               className={`relative transition-all duration-1000 ${
                 isVisible 
@@ -129,7 +121,6 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
                   : 'translateY(48px) scale(0.98)',
               }}
             >
-              {/* Image Container - 90% width, anchored left */}
               <Link
                 href="/project/1"
                 className="relative w-full max-w-5xl mx-auto lg:ml-0 block"
@@ -145,13 +136,11 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
                 onClick={(e) => {
                   e.preventDefault();
                   setIsTransitioning(true);
-                  // Custom fade-to-white transition
                   setTimeout(() => {
                     window.location.href = '/project/1';
                   }, 500);
                 }}
               >
-                {/* High-impact photograph - Concrete Shadows */}
                 <div 
                   className="relative w-full h-96 lg:h-[600px] overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black"
                   style={{
@@ -160,10 +149,8 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
                     backgroundPosition: 'center'
                   }}
                 >
-                  {/* Subtle overlay for depth and fine-art feel */}
                   <div className="absolute inset-0 bg-black opacity-5" />
                   
-                  {/* Film grain overlay for tactility */}
                   <div 
                     className="absolute inset-0 opacity-10"
                     style={{
@@ -175,7 +162,6 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
               </Link>
             </div>
 
-            {/* The Teaser Text: The Minimalist Gateway */}
             <div 
               className={`absolute bottom-8 right-8 lg:bottom-12 lg:right-12 transition-all duration-1000 ${
                 isVisible 
@@ -185,7 +171,6 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
               style={{ transitionDelay: '300ms' }}
             >
               <div className="text-right space-y-2">
-                {/* Project Title */}
                 <h3 
                   className="font-serif text-2xl lg:text-3xl font-medium text-signature-ink"
                   style={{ 
@@ -196,7 +181,6 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
                   Concrete Shadows
                 </h3>
                 
-                {/* Project Link/CTA */}
                 <Link
                   href="/project/1"
                   className="inline-block font-sans text-sm font-medium uppercase tracking-widest text-signature-ink transition-all duration-300 hover:text-light-grey"
@@ -206,11 +190,10 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
                   }}
                   onMouseEnter={() => setIsLinkHovered(true)}
                   onMouseLeave={() => setIsLinkHovered(false)}
-                >
-                  <span className="relative">
-                    View Archive
-                    {/* Hover underline */}
-                    <div 
+                  >
+                    <span className="relative">
+                      View Archive
+                      <div
                       className={`absolute bottom-0 left-0 h-px bg-archive-sepia transition-all duration-500 ${
                         isLinkHovered ? 'w-full' : 'w-0'
                       }`}
@@ -222,7 +205,6 @@ export default function FeaturedWork({ onScroll }: FeaturedWorkProps) {
           </div>
         </div>
 
-        {/* Fade-to-white transition overlay */}
         {isTransitioning && (
           <div 
             className="fixed inset-0 bg-white z-50 transition-opacity duration-500"

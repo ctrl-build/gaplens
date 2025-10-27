@@ -1,19 +1,15 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://gaplens.com/sitemap.xml
 
-# Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Disallow admin or private areas (if any exist in future)
 Disallow: /admin/
 Disallow: /private/
 Disallow: /_next/
 Disallow: /api/
 
-# Allow all major search engines
 User-agent: Googlebot
 Allow: /
 

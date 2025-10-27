@@ -11,7 +11,6 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
   const [scrollY, setScrollY] = useState(0);
   const manifestoRef = useRef<HTMLDivElement>(null);
 
-  // Scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -21,7 +20,6 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
         const rect = manifestoRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Trigger when element is 70% visible
         if (rect.top < windowHeight * 0.7 && rect.bottom > 0) {
           setIsVisible(true);
         }
@@ -38,12 +36,10 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
     <section 
       ref={manifestoRef}
       className="relative min-h-screen w-full bg-gallery-white flex items-center justify-center"
-      style={{ backgroundColor: '#F9F9F9' }}
+        style={{ backgroundColor: '#F9F9F9' }}
     >
-      {/* Maximized Negative Space Container */}
       <div className="max-w-5xl mx-auto px-6 lg:px-12 py-32 lg:py-48">
-        {/* The Manifesto Statement */}
-        <div 
+        <div
           className={`text-center transition-all duration-1000 ${
             isVisible 
               ? 'opacity-100 translate-y-0 scale-100' 
@@ -55,7 +51,6 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
               : `translateY(${scrollY * 0.1}px) scale(0.95)`,
           }}
         >
-          {/* Manifesto Text */}
           <h2 
             className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-normal text-signature-ink"
             style={{ 
@@ -74,7 +69,6 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
         </div>
       </div>
 
-      {/* Subtle Depth Overlay */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{

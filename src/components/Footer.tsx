@@ -12,14 +12,12 @@ export default function Footer({ onScroll }: FooterProps) {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       if (footerRef.current) {
         const rect = footerRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Trigger when footer is 80% visible
         if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
           setIsVisible(true);
         }
@@ -36,20 +34,17 @@ export default function Footer({ onScroll }: FooterProps) {
     <footer 
       ref={footerRef}
       className="relative w-full bg-gallery-white"
-      style={{ backgroundColor: '#F9F9F9' }}
+      style={{       backgroundColor: '#F9F9F9' }}
     >
-      {/* Significant Gallery White Buffer */}
       <div className="py-24 lg:py-32" />
       
-      {/* The Archive Colophon - Minimalist Footer Strip */}
-      <div 
+      <div
         className={`transition-opacity duration-1000 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div         className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex flex-col sm:flex-row justify-between items-center py-4 space-y-4 sm:space-y-0">
-            {/* Left Edge: Copyright and Legal Metadata */}
             <div className="flex-shrink-0 text-center sm:text-left">
               <p 
                 className="font-sans text-xs text-whisper-grey"
@@ -81,10 +76,8 @@ export default function Footer({ onScroll }: FooterProps) {
               </p>
             </div>
 
-            {/* Right Edge: Essential Social/Professional Links */}
             <div className="flex-shrink-0">
               <div className="flex items-center space-x-4 sm:space-x-6">
-                {/* Instagram Link */}
                 <Link
                   href="https://instagram.com/gaplens"
                   target="_blank"
@@ -106,7 +99,6 @@ export default function Footer({ onScroll }: FooterProps) {
                     INSTAGRAM
                   </span>
                   
-                  {/* Archive Sepia Box Flash */}
                   <div 
                     className={`absolute inset-0 border border-archive-sepia transition-all duration-150 ${
                       hoveredLink === 'instagram' ? 'opacity-100' : 'opacity-0'
@@ -119,7 +111,6 @@ export default function Footer({ onScroll }: FooterProps) {
                   />
                 </Link>
 
-                {/* Separator */}
                 <span 
                   className="font-sans text-xs text-whisper-grey"
                   style={{ 
@@ -130,7 +121,6 @@ export default function Footer({ onScroll }: FooterProps) {
                   /
                 </span>
 
-                {/* LinkedIn Link */}
                 <Link
                   href="https://linkedin.com/company/gaplens"
                   target="_blank"
@@ -152,7 +142,6 @@ export default function Footer({ onScroll }: FooterProps) {
                     LINKEDIN
                   </span>
                   
-                  {/* Archive Sepia Box Flash */}
                   <div 
                     className={`absolute inset-0 border border-archive-sepia transition-all duration-150 ${
                       hoveredLink === 'linkedin' ? 'opacity-100' : 'opacity-0'
@@ -165,8 +154,7 @@ export default function Footer({ onScroll }: FooterProps) {
                   />
                 </Link>
 
-                {/* Separator */}
-                <span 
+                <span
                   className="font-sans text-xs text-whisper-grey"
                   style={{ 
                     fontFamily: 'SuisseBPIntl, sans-serif',
@@ -176,7 +164,6 @@ export default function Footer({ onScroll }: FooterProps) {
                   /
                 </span>
 
-                {/* Terms Link */}
                 <Link
                   href="/terms"
                   className="group relative"
@@ -196,7 +183,6 @@ export default function Footer({ onScroll }: FooterProps) {
                     TERMS
                   </span>
                   
-                  {/* Archive Sepia Box Flash */}
                   <div 
                     className={`absolute inset-0 border border-archive-sepia transition-all duration-150 ${
                       hoveredLink === 'terms' ? 'opacity-100' : 'opacity-0'

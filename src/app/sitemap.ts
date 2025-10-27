@@ -42,7 +42,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
-    // Project pages
     {
       url: `${baseUrl}/project/1`,
       lastModified: new Date(),
@@ -79,7 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    // Editorial articles
     {
       url: `${baseUrl}/editorial/1`,
       lastModified: new Date(),

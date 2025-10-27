@@ -1,12 +1,4 @@
-# Cloudflare Pages Redirects Configuration
-# This file handles redirects for SEO and user experience
-
-# Redirect www to non-www
 https://www.gaplens.com/* https://gaplens.com/:splat 301
 http://www.gaplens.com/* https://gaplens.com/:splat 301
 
-# Redirect old URLs to new structure (if needed)
-# /old-page /new-page 301
-
-# Handle 404s - redirect to homepage
 /* / 404

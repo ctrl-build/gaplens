@@ -98,7 +98,6 @@ export default function ArchiveClient() {
   };
 
   useEffect(() => {
-    // Detect touch device
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     };

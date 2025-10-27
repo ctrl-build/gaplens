@@ -17,14 +17,12 @@ export default function Project3({ onScroll }: Project3Props) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const project3Ref = useRef<HTMLDivElement>(null);
 
-  // Scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       if (project3Ref.current) {
         const rect = project3Ref.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Trigger when element is 60% visible
         if (rect.top < windowHeight * 0.6 && rect.bottom > 0) {
           setIsVisible(true);
         }
@@ -37,9 +35,7 @@ export default function Project3({ onScroll }: Project3Props) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [onScroll]);
 
-  // Custom cursor tracking
   useEffect(() => {
-    // Detect touch device
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     };
@@ -78,7 +74,6 @@ export default function Project3({ onScroll }: Project3Props) {
 
   return (
     <>
-      {/* Custom Cursor for Image Hover */}
       {!isTouchDevice && (
         <div
           className={`fixed pointer-events-none z-50 transition-all duration-300 ${
@@ -107,16 +102,13 @@ export default function Project3({ onScroll }: Project3Props) {
         </div>
       )}
 
-      {/* Project 3 Section - The Centerpiece Statement */}
       <section 
         ref={project3Ref}
         className="relative w-full bg-gallery-white py-32 lg:py-48"
         style={{ backgroundColor: '#F9F9F9' }}
       >
-        {/* Container with symmetrical framing */}
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex justify-center">
-            {/* The Image: Centered, Symmetrical Composition */}
             <div 
               className={`relative transition-all duration-1200 ${
                 isVisible 
@@ -127,11 +119,10 @@ export default function Project3({ onScroll }: Project3Props) {
                 transform: isVisible 
                   ? 'scale(1) translateY(0)' 
                   : 'scale(0.95) translateY(20px)',
-                width: '80%', // 75-80% width as specified
+                width: '80%',
                 maxWidth: '900px'
               }}
             >
-              {/* Image Container - Centered, Symmetrical */}
               <Link
                 href="/project/3"
                 className="relative w-full block"
@@ -146,13 +137,11 @@ export default function Project3({ onScroll }: Project3Props) {
                 onClick={(e) => {
                   e.preventDefault();
                   setIsTransitioning(true);
-                  // Custom fade-to-white transition
                   setTimeout(() => {
                     window.location.href = '/project/3';
                   }, 500);
                 }}
               >
-                {/* High-impact photograph - Silence and Structure */}
                 <div 
                   className="relative w-full h-96 lg:h-[600px] overflow-hidden bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200"
                   style={{
@@ -161,10 +150,8 @@ export default function Project3({ onScroll }: Project3Props) {
                     backgroundPosition: 'center'
                   }}
                 >
-                  {/* Subtle overlay for depth and fine-art feel */}
                   <div className="absolute inset-0 bg-black opacity-5" />
                   
-                  {/* Film grain overlay for tactility */}
                   <div 
                     className="absolute inset-0 opacity-10"
                     style={{
@@ -177,7 +164,6 @@ export default function Project3({ onScroll }: Project3Props) {
             </div>
           </div>
 
-          {/* The Teaser Text: Centered, Symmetrical Gateway */}
           <div 
             className={`flex justify-center mt-12 transition-all duration-1200 ${
               isVisible 
@@ -187,7 +173,6 @@ export default function Project3({ onScroll }: Project3Props) {
             style={{ transitionDelay: '300ms' }}
           >
             <div className="text-center space-y-4">
-              {/* Project Title */}
               <h3 
                 className="font-serif text-2xl lg:text-3xl font-medium text-signature-ink"
                 style={{ 
@@ -198,7 +183,6 @@ export default function Project3({ onScroll }: Project3Props) {
                 Silence and Structure
               </h3>
               
-              {/* Project Link/CTA */}
               <Link
                 href="/project/3"
                 className="inline-block font-sans text-sm font-medium uppercase tracking-widest text-signature-ink transition-all duration-300 hover:text-light-grey"
@@ -208,11 +192,10 @@ export default function Project3({ onScroll }: Project3Props) {
                 }}
                 onMouseEnter={() => setIsLinkHovered(true)}
                 onMouseLeave={() => setIsLinkHovered(false)}
-              >
-                <span className="relative">
-                  Discover Archive
-                  {/* Hover underline */}
-                  <div 
+                >
+                  <span className="relative">
+                    Discover Archive
+                    <div
                     className={`absolute bottom-0 left-0 h-px bg-archive-sepia transition-all duration-500 ${
                       isLinkHovered ? 'w-full' : 'w-0'
                     }`}
@@ -223,7 +206,6 @@ export default function Project3({ onScroll }: Project3Props) {
           </div>
         </div>
 
-        {/* Fade-to-white transition overlay */}
         {isTransitioning && (
           <div 
             className="fixed inset-0 bg-white z-50 transition-opacity duration-500"
