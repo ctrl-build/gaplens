@@ -51,7 +51,7 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
               : `translateY(${scrollY * 0.1}px) scale(0.95)`,
           }}
         >
-          <h2 
+          <h1 
             className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-normal text-signature-ink"
             style={{ 
               fontFamily: 'GaramondPremierPro, serif',
@@ -65,7 +65,7 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
             <span className="block mb-4">WE CAPTURE THE SPACE</span>
             <span className="block mb-4">BETWEEN THE LIGHT</span>
             <span className="block">AND THE SHADOW</span>
-          </h2>
+          </h1>
         </div>
       </div>
 
