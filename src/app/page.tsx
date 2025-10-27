@@ -3,7 +3,7 @@ import HomePageClient from '@/components/HomePageClient';
 
 export const metadata: Metadata = {
   title: 'GapLens Studio | Fine Art Photography & Editorial Excellence',
-  description: 'Discover GapLens Studio\'s curated archive of fine art photography. Specializing in architectural abstraction, intimate still life, and editorial excellence. Explore our minimalist visual narratives.',
+  description: 'Fine art photography by GapLens Studio. Specializing in architectural photography, editorial photography, and minimalist photography. We capture the space between light and shadow.',
   keywords: [
     'fine art photography',
     'architectural photography',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'GapLens Studio | Fine Art Photography & Editorial Excellence',
-    description: 'Discover GapLens Studio\'s curated archive of fine art photography. Specializing in architectural abstraction, intimate still life, and editorial excellence.',
+    description: 'Fine art photography by GapLens Studio. Specializing in architectural photography, editorial photography, and minimalist photography. We capture the space between light and shadow.',
     url: 'https://gaplens.com',
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'GapLens Studio | Fine Art Photography & Editorial Excellence',
-    description: 'Discover GapLens Studio\'s curated archive of fine art photography. Specializing in architectural abstraction, intimate still life, and editorial excellence.',
+    description: 'Fine art photography by GapLens Studio. Specializing in architectural photography, editorial photography, and minimalist photography. We capture the space between light and shadow.',
     images: ['/assets/images/og-homepage.jpg'],
   },
   alternates: {

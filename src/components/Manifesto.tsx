@@ -62,9 +62,9 @@ export default function Manifesto({ onScroll }: ManifestoProps) {
               fontWeight: 400
             }}
           >
-            <span className="block mb-4">WE CAPTURE THE SPACE</span>
-            <span className="block mb-4">BETWEEN THE LIGHT</span>
-            <span className="block">AND THE SHADOW</span>
+            <span className="block mb-4">Fine Art Photography: We Capture The Space</span>
+            <span className="block mb-4">Between The Light</span>
+            <span className="block">And The Shadow</span>
           </h1>
         </div>
       </div>
