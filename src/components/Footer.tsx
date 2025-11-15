@@ -66,12 +66,12 @@ export default function Footer({ onScroll }: FooterProps) {
               >
                 DESIGNED & DEVELOPED BY{' '}
                 <Link
-                  href="https://ctrl-build.com"
+                  href="https://monk.haus"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-signature-ink transition-colors duration-200"
                 >
-                  CTRL+BUILD
+                  monk
                 </Link>
               </p>
             </div>
