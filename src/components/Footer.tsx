@@ -54,7 +54,7 @@ export default function Footer({ onScroll }: FooterProps) {
                   lineHeight: '1.4'
                 }}
               >
-                © 2025 GAPLENS STUDIO / ALL RIGHTS RESERVED
+                © 2026 GAPLENS STUDIO / ALL RIGHTS RESERVED
               </p>
               <p 
                 className="font-sans text-xs text-whisper-grey mt-1"
